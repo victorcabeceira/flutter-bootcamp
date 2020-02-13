@@ -10,3 +10,12 @@ https://www.udemy.com/course/flutter-bootcamp-with-dart/
 - Flutter Asks for a blank screen and draws ("paints") on that blank window, making it usable on practically any platform
 
 - In flutter, widgets are like a lego blocks that you can customize and plug them together and create an app that can be deployed practically anywhere
+
+# Why flutter?
+
+- One codebase to maintain as it uses the same language: Dart
+- Simple and flexible layout system
+- Constraints to handle different screen sizes
+- Inspired by web, using, flex, grids, rows, columns, etc. All using widgets
+- "Split second" reload, similar as refresh button
+- Open source: Access to original source code (easier to understand and use)
