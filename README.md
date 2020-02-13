@@ -19,3 +19,17 @@ https://www.udemy.com/course/flutter-bootcamp-with-dart/
 - Inspired by web, using, flex, grids, rows, columns, etc. All using widgets
 - "Split second" reload, similar as refresh button
 - Open source: Access to original source code (easier to understand and use)
+
+# The anatomy of a fluter app
+
+An example
+
+        Scaffold
+        /       \
+  App Bar       Container
+                    |
+                  Column
+                  /     \
+                Row     Text
+                /  \
+              Text  Icon
