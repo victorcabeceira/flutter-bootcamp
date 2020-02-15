@@ -38,3 +38,14 @@ An example
   - Be careful with indentation
   - Setup assets, fonts, etc.
     - After setting up a new configuration, click on get packages
+
+# Change app icon
+  -> Generate your icons on: https://appicon.co/
+  -> Android
+    - Access: /android/app/src/main/res
+      - Delete and replace the folders started with "mipmap"
+  -> iOS
+    - Access:  /ios/Runner/
+      - Delete and replace the folder "Assets.xscassets"
+
+  ->
