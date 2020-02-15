@@ -4,8 +4,18 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Center(
-        child: Text("Hello world"),
+      home: Scaffold(
+        backgroundColor: Colors.grey[100],
+        appBar: AppBar(
+          title: Text('I am rich'),
+          backgroundColor: Colors.cyan[800],
+        ),
+        body: Center(
+          child: Image(
+            image: NetworkImage(
+                'https://pcacdn.azureedge.net/-/media/pn-np/ab/banff/WET4/visit/les10-top10/louise/LakeLouise-PaulZizka.jpg?modified=20170316185358'),
+          ),
+        ),
       ),
     ),
   );
