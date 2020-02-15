@@ -33,3 +33,8 @@ An example
                 Row     Text
                 /  \
               Text  Icon
+
+# YAML - YAML ain't markup language
+  - Be careful with indentation
+  - Setup assets, fonts, etc.
+    - After setting up a new configuration, click on get packages

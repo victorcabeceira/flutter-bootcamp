@@ -5,15 +5,15 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.blueGrey[600],
         appBar: AppBar(
           title: Text('I am rich'),
-          backgroundColor: Colors.cyan[800],
+          backgroundColor: Colors.blueGrey[900],
         ),
         body: Center(
           child: Image(
-            image: NetworkImage(
-                'https://pcacdn.azureedge.net/-/media/pn-np/ab/banff/WET4/visit/les10-top10/louise/LakeLouise-PaulZizka.jpg?modified=20170316185358'),
+            image: AssetImage(
+                'images/diamond.png'),
           ),
         ),
       ),
