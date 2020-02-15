@@ -48,4 +48,13 @@ An example
     - Access:  /ios/Runner/
       - Delete and replace the folder "Assets.xscassets"
 
-  ->
+# Hot reload vs hot restart
+  - Hot reload changes visually and main state
+  - Hot restart restarts the app, resetting state
+
+# Errors and solutions
+  - Target of URI doesn't exist: 'package:flutter/material.dart'.
+    - (Optional) delete pubspeck.lock
+      - Run: flutter pub get
+    - (Optional) remove .packages
+      - Run: flutter packages get
