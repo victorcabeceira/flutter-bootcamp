@@ -58,3 +58,11 @@ An example
       - Run: flutter pub get
     - (Optional) remove .packages
       - Run: flutter packages get
+
+# OOP (4 pillars)
+  - Abstraction
+    -> Make something complex into smaller and abstract pieces
+
+  - Encapsulation
+  - Inheritance
+  - Polymorphism
