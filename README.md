@@ -64,5 +64,7 @@ An example
     -> Make something complex into smaller and abstract pieces
 
   - Encapsulation
+    -> Separate different job/role and they must be concerned about only their job/role
+
   - Inheritance
   - Polymorphism
