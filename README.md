@@ -67,4 +67,7 @@ An example
     -> Separate different job/role and they must be concerned about only their job/role
 
   - Inheritance
+    -> When a class is able to inherit properties and methods from their parents
+
   - Polymorphism
+    -> "Changing shapes": use @override/super to override or "inherit" a parents method
