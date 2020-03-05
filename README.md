@@ -71,3 +71,10 @@ An example
 
   - Polymorphism
     -> "Changing shapes": use @override/super to override or "inherit" a parents method
+
+# Final vs const
+  - Both mean that after assigned a value, it can't be changed
+  - A final variable can be set only once
+  - A const variable is a compile-time constant
+    - It doesn't have access to run-time values (while final has), that's why classes has initial values as final, as they're only acquired only when the Widget is rendered
+    - TL:DR; const stores things that don't need run-time operations, while final does
