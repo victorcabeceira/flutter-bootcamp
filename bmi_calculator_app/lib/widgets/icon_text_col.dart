@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 const double iconSize = 80.0;
 const double sizedBoxHeight = 10.0;
 const TextStyle labelTextStyle = TextStyle(
-  fontSize: 18,
-  color: Color(0xFF8D8E98),
-);
+            fontSize: 18,
+            color: Color(0xFF8D8E98),
+          );
 
 class IconTextColumn extends StatelessWidget {
   IconTextColumn({@required this.icon, @required this.text});

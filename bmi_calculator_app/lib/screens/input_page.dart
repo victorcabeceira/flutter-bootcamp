@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const double bottomContainerHeight = 60.0;
 const Color bottomContainerColor = Color(0xFFEB1555);
 const Color activeCardColor = Color(0xFF1D1E33);
+const Color inactiveCardColor = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,6 +14,19 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+
+  void updateColor(int gender) {
+    if (gender == 1) {
+      maleCardColor = activeCardColor;
+      femaleCardColor = inactiveCardColor;
+    } else if (gender == 2) {
+      femaleCardColor = activeCardColor;
+      maleCardColor = inactiveCardColor;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +37,44 @@ class _InputPageState extends State<InputPage> {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(child: TopRowWidget()),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColor(1);
+                      });
+                    },
+                    child: CustomCard(
+                      color: maleCardColor,
+                      child: IconTextColumn(
+                        icon: FontAwesomeIcons.mars,
+                        text: 'MALE',
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColor(2);
+                      });
+                    },
+                    child: CustomCard(
+                      color: femaleCardColor,
+                      child: IconTextColumn(
+                        icon: FontAwesomeIcons.venus,
+                        text: 'FEMALE',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(child: CustomCard(color: activeCardColor)),
           Expanded(
             child: Row(
@@ -41,34 +92,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class TopRowWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: CustomCard(
-            color: activeCardColor,
-            child: IconTextColumn(
-              icon: FontAwesomeIcons.mars,
-              text: 'MALE',
-            ),
-          ),
-        ),
-        Expanded(
-          child: CustomCard(
-            color: activeCardColor,
-            child: IconTextColumn(
-              icon: FontAwesomeIcons.venus,
-              text: 'FEMALE',
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
