@@ -16,20 +16,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-
-  void updateColor(GenderEnum selectedGender) {
-    setState(() {
-      if (selectedGender == GenderEnum.male) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inactiveCardColor;
-      } else if (selectedGender == GenderEnum.female) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inactiveCardColor;
-      }
-    });
-  }
+  GenderEnum selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +33,15 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => updateColor(GenderEnum.male),
+                    onTap: () {
+                      setState(() {
+                        selectedGender = GenderEnum.male;
+                      });
+                    },
                     child: CustomCard(
-                      color: maleCardColor,
+                      color: selectedGender == GenderEnum.male
+                          ? activeCardColor
+                          : inactiveCardColor,
                       child: IconTextColumn(
                         icon: FontAwesomeIcons.mars,
                         text: 'MALE',
@@ -58,9 +51,15 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => updateColor(GenderEnum.female),
+                    onTap: () {
+                      setState(() {
+                        selectedGender = GenderEnum.female;
+                      });
+                    },
                     child: CustomCard(
-                      color: femaleCardColor,
+                      color: selectedGender == GenderEnum.female
+                          ? activeCardColor
+                          : inactiveCardColor,
                       child: IconTextColumn(
                         icon: FontAwesomeIcons.venus,
                         text: 'FEMALE',
