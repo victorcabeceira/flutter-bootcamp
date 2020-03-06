@@ -18,13 +18,15 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColor = inactiveCardColor;
 
   void updateColor(int gender) {
-    if (gender == 1) {
-      maleCardColor = activeCardColor;
-      femaleCardColor = inactiveCardColor;
-    } else if (gender == 2) {
-      femaleCardColor = activeCardColor;
-      maleCardColor = inactiveCardColor;
-    }
+    setState(() {
+      if (gender == 1) {
+        maleCardColor = activeCardColor;
+        femaleCardColor = inactiveCardColor;
+      } else if (gender == 2) {
+        femaleCardColor = activeCardColor;
+        maleCardColor = inactiveCardColor;
+      }
+    });
   }
 
   @override
@@ -42,11 +44,7 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        updateColor(1);
-                      });
-                    },
+                    onTap: () => updateColor(1),
                     child: CustomCard(
                       color: maleCardColor,
                       child: IconTextColumn(
@@ -58,11 +56,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        updateColor(2);
-                      });
-                    },
+                    onTap: () => updateColor(2),
                     child: CustomCard(
                       color: femaleCardColor,
                       child: IconTextColumn(
