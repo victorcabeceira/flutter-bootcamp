@@ -32,50 +32,46 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
+                  child: ClickableCard(
                     onTap: () {
                       setState(() {
                         selectedGender = GenderEnum.male;
                       });
                     },
-                    child: CustomCard(
-                      color: selectedGender == GenderEnum.male
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      child: IconTextColumn(
-                        icon: FontAwesomeIcons.mars,
-                        text: 'MALE',
-                      ),
+                    color: selectedGender == GenderEnum.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    child: IconTextColumn(
+                      icon: FontAwesomeIcons.mars,
+                      text: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
+                  child: ClickableCard(
                     onTap: () {
                       setState(() {
                         selectedGender = GenderEnum.female;
                       });
                     },
-                    child: CustomCard(
-                      color: selectedGender == GenderEnum.female
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      child: IconTextColumn(
-                        icon: FontAwesomeIcons.venus,
-                        text: 'FEMALE',
-                      ),
+                    color: selectedGender == GenderEnum.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    child: IconTextColumn(
+                      icon: FontAwesomeIcons.venus,
+                      text: 'FEMALE',
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Expanded(child: CustomCard(color: activeCardColor)),
+          Expanded(child: ClickableCard(color: activeCardColor)),
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: CustomCard(color: activeCardColor)),
-                Expanded(child: CustomCard(color: activeCardColor)),
+                Expanded(child: ClickableCard(color: activeCardColor)),
+                Expanded(child: ClickableCard(color: activeCardColor)),
               ],
             ),
           ),
