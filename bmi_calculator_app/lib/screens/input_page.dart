@@ -29,43 +29,14 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: ClickableCard(
-                    onTap: () {
-                      setState(() {
+              child: TopRowWidget(
+                  tapMaleIcon: () => setState(() {
                         selectedGender = GenderEnum.male;
-                      });
-                    },
-                    color: selectedGender == GenderEnum.male
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    child: IconTextColumn(
-                      icon: FontAwesomeIcons.mars,
-                      text: 'MALE',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ClickableCard(
-                    onTap: () {
-                      setState(() {
+                      }),
+                  tapFemaleIcon: () => setState(() {
                         selectedGender = GenderEnum.female;
-                      });
-                    },
-                    color: selectedGender == GenderEnum.female
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    child: IconTextColumn(
-                      icon: FontAwesomeIcons.venus,
-                      text: 'FEMALE',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+                      }),
+                  selectedGender: selectedGender)),
           Expanded(child: ClickableCard(color: activeCardColor)),
           Expanded(
             child: Row(
@@ -80,6 +51,52 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
             height: bottomContainerHeight,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TopRowWidget extends StatelessWidget {
+  TopRowWidget({
+    @required this.tapMaleIcon,
+    @required this.tapFemaleIcon,
+    @required this.selectedGender,
+  });
+
+  final Function tapMaleIcon;
+  final Function tapFemaleIcon;
+  final GenderEnum selectedGender;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: ClickableCard(
+              onTap: () => tapMaleIcon(),
+              color: selectedGender == GenderEnum.male
+                  ? activeCardColor
+                  : inactiveCardColor,
+              child: IconTextColumn(
+                icon: FontAwesomeIcons.mars,
+                text: 'MALE',
+              ),
+            ),
+          ),
+          Expanded(
+            child: ClickableCard(
+              onTap: () => tapFemaleIcon(),
+              color: selectedGender == GenderEnum.female
+                  ? activeCardColor
+                  : inactiveCardColor,
+              child: IconTextColumn(
+                icon: FontAwesomeIcons.venus,
+                text: 'FEMALE',
+              ),
+            ),
           ),
         ],
       ),
