@@ -13,6 +13,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   GenderEnum selectedGender;
+  int height = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,14 @@ class _InputPageState extends State<InputPage> {
                   selectedGender: selectedGender)),
           Expanded(
             child: ClickableCard(
-                color: kActiveCardColor, child: MiddleRowWidget()),
+              color: kActiveCardColor,
+              child: MiddleRowWidget(
+                onChangeSlider: (int newHeight) => setState(() {
+                  height = newHeight;
+                }),
+                height: height,
+              ),
+            ),
           ),
           Expanded(
             child: Row(
@@ -107,6 +115,11 @@ class TopRowWidget extends StatelessWidget {
 }
 
 class MiddleRowWidget extends StatelessWidget {
+  MiddleRowWidget({this.onChangeSlider, this.height});
+
+  final Function onChangeSlider;
+  final int height;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -122,7 +135,7 @@ class MiddleRowWidget extends StatelessWidget {
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[
             Text(
-              '180',
+              height.toString(),
               style: kNumbersTextStyle,
             ),
             SizedBox(
@@ -133,6 +146,14 @@ class MiddleRowWidget extends StatelessWidget {
               style: kLabelTextStyle,
             )
           ],
+        ),
+        Slider(
+          value: height.toDouble(),
+          min: kMinUserHeight,
+          max: kMaxUserHeight,
+          activeColor: kSliderActiveColor,
+          inactiveColor: kSliderInactiveColor,
+          onChanged: (double newHeight) => onChangeSlider(newHeight.round()),
         )
       ],
     );
