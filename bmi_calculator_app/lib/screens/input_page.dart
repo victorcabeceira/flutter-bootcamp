@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator_app/widgets/index.dart';
 import 'package:bmi_calculator_app/widgets/icon_text_col.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const double bottomContainerHeight = 60.0;
-const Color bottomContainerColor = Color(0xFFEB1555);
-const Color activeCardColor = Color(0xFF1D1E33);
-const Color inactiveCardColor = Color(0xFF111328);
+import 'package:bmi_calculator_app/constants/index.dart';
 
 enum GenderEnum { male, female }
 
@@ -27,30 +23,36 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
               child: TopRowWidget(
-                  tapMaleIcon: () => setState(() {
-                        selectedGender = GenderEnum.male;
-                      }),
+                  tapMaleIcon: () => setState(
+                        () {
+                          selectedGender = GenderEnum.male;
+                        },
+                      ),
                   tapFemaleIcon: () => setState(() {
                         selectedGender = GenderEnum.female;
                       }),
                   selectedGender: selectedGender)),
-          Expanded(child: ClickableCard(color: activeCardColor)),
+          Expanded(
+            child: ClickableCard(
+                color: kActiveCardColor, child: MiddleRowWidget()),
+          ),
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ClickableCard(color: activeCardColor)),
-                Expanded(child: ClickableCard(color: activeCardColor)),
+                Expanded(child: ClickableCard(color: kActiveCardColor)),
+                Expanded(child: ClickableCard(color: kActiveCardColor)),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
@@ -78,8 +80,8 @@ class TopRowWidget extends StatelessWidget {
             child: ClickableCard(
               onTap: () => tapMaleIcon(),
               color: selectedGender == GenderEnum.male
-                  ? activeCardColor
-                  : inactiveCardColor,
+                  ? kActiveCardColor
+                  : kInactiveCardColor,
               child: IconTextColumn(
                 icon: FontAwesomeIcons.mars,
                 text: 'MALE',
@@ -90,8 +92,8 @@ class TopRowWidget extends StatelessWidget {
             child: ClickableCard(
               onTap: () => tapFemaleIcon(),
               color: selectedGender == GenderEnum.female
-                  ? activeCardColor
-                  : inactiveCardColor,
+                  ? kActiveCardColor
+                  : kInactiveCardColor,
               child: IconTextColumn(
                 icon: FontAwesomeIcons.venus,
                 text: 'FEMALE',
@@ -100,6 +102,39 @@ class TopRowWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MiddleRowWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'HEIGHT',
+          style: kLabelTextStyle,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
+          children: <Widget>[
+            Text(
+              '180',
+              style: kNumbersTextStyle,
+            ),
+            SizedBox(
+              width: 2,
+            ),
+            Text(
+              'cm',
+              style: kLabelTextStyle,
+            )
+          ],
+        )
+      ],
     );
   }
 }
