@@ -23,3 +23,6 @@ const TextStyle kLabelTextStyle = TextStyle(
 
 const TextStyle kNumbersTextStyle =
     TextStyle(fontSize: 50, fontWeight: FontWeight.w900);
+
+const TextStyle kLargeButtonStyle =
+    TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
