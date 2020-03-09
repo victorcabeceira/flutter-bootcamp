@@ -13,7 +13,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   GenderEnum selectedGender;
-  int height = 100;
+  int height = 160;
+  int weight = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +50,13 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(child: ClickableCard(color: kActiveCardColor)),
-                Expanded(child: ClickableCard(color: kActiveCardColor)),
-              ],
-            ),
+            child: BottomRowWidget(
+                weight: weight,
+                onUpdateWeight: (int newWeight) => setState(
+                      () {
+                        weight = newWeight;
+                      },
+                    )),
           ),
           Container(
             color: kBottomContainerColor,
@@ -163,6 +165,65 @@ class MiddleRowWidget extends StatelessWidget {
             onChanged: (double newHeight) => onChangeSlider(newHeight.round()),
           ),
         )
+      ],
+    );
+  }
+}
+
+class BottomRowWidget extends StatelessWidget {
+  BottomRowWidget({this.weight, this.onUpdateWeight});
+
+  final int weight;
+  final Function onUpdateWeight;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: ClickableCard(
+            color: kActiveCardColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('WEIGHT', style: kLabelTextStyle),
+                Text(weight.toString(), style: kNumbersTextStyle),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RoundIconButton(
+                      shape: CircleBorder(),
+                      backgroundColor: kFABBackgroundColor,
+                      elevation: 0,
+                      onPressed: () {},
+                      icon: FontAwesomeIcons.minus,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    RoundIconButton(
+                      shape: CircleBorder(),
+                      backgroundColor: kFABBackgroundColor,
+                      elevation: 0,
+                      onPressed: () {},
+                      icon: FontAwesomeIcons.plus,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: ClickableCard(
+            color: kActiveCardColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('WEIGHT', style: kLabelTextStyle),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
