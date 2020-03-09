@@ -13,8 +13,9 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   GenderEnum selectedGender;
-  int height = 160;
-  int weight = 50;
+  int height = 170;
+  int weight = 70;
+  int age = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +52,15 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: BottomRowWidget(
-                weight: weight,
-                onUpdateWeight: (int newWeight) => setState(
-                      () {
-                        weight = newWeight;
-                      },
-                    )),
+              weight: weight,
+              onUpdateWeight: (int newWeight) => setState(() {
+                weight = newWeight;
+              }),
+              age: age,
+              onUpdateAge: (int newAge) => setState(() {
+                age = newAge;
+              }),
+            ),
           ),
           Container(
             color: kBottomContainerColor,
@@ -171,10 +175,18 @@ class MiddleRowWidget extends StatelessWidget {
 }
 
 class BottomRowWidget extends StatelessWidget {
-  BottomRowWidget({this.weight, this.onUpdateWeight});
+  BottomRowWidget({
+    this.weight,
+    this.onUpdateWeight,
+    this.age,
+    this.onUpdateAge,
+  });
 
   final int weight;
   final Function onUpdateWeight;
+  final int age;
+  final Function onUpdateAge;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -186,7 +198,24 @@ class BottomRowWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('WEIGHT', style: kLabelTextStyle),
-                Text(weight.toString(), style: kNumbersTextStyle),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: <Widget>[
+                    Text(
+                      weight.toString(),
+                      style: kNumbersTextStyle,
+                    ),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Text(
+                      'kg',
+                      style: kLabelTextStyle,
+                    )
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -194,7 +223,9 @@ class BottomRowWidget extends StatelessWidget {
                       shape: CircleBorder(),
                       backgroundColor: kFABBackgroundColor,
                       elevation: 0,
-                      onPressed: () {},
+                      onPressed: () {
+                        onUpdateWeight(weight - 1);
+                      },
                       icon: FontAwesomeIcons.minus,
                     ),
                     SizedBox(
@@ -204,7 +235,9 @@ class BottomRowWidget extends StatelessWidget {
                       shape: CircleBorder(),
                       backgroundColor: kFABBackgroundColor,
                       elevation: 0,
-                      onPressed: () {},
+                      onPressed: () {
+                        onUpdateWeight(weight + 1);
+                      },
                       icon: FontAwesomeIcons.plus,
                     ),
                   ],
@@ -219,7 +252,51 @@ class BottomRowWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('WEIGHT', style: kLabelTextStyle),
+                Text('AGE', style: kLabelTextStyle),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: <Widget>[
+                    Text(
+                      age.toString(),
+                      style: kNumbersTextStyle,
+                    ),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Text(
+                      'y',
+                      style: kLabelTextStyle,
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RoundIconButton(
+                      shape: CircleBorder(),
+                      backgroundColor: kFABBackgroundColor,
+                      elevation: 0,
+                      onPressed: () {
+                        onUpdateAge(age - 1);
+                      },
+                      icon: FontAwesomeIcons.minus,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    RoundIconButton(
+                      shape: CircleBorder(),
+                      backgroundColor: kFABBackgroundColor,
+                      elevation: 0,
+                      onPressed: () {
+                        onUpdateAge(age + 1);
+                      },
+                      icon: FontAwesomeIcons.plus,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
