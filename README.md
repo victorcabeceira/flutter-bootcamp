@@ -78,3 +78,6 @@ An example
   - A const variable is a compile-time constant
     - It doesn't have access to run-time values (while final has), that's why classes has initial values as final, as they're only acquired only when the Widget is rendered
     - TL:DR; const stores things that don't need run-time operations, while final does
+
+# Composition vs Inheritance
+  Flutter widgets uses composition to create widgets, where a more complex widget is composed by other smaller widgets, instead of inheriting from one and changing it
