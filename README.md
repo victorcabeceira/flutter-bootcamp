@@ -81,3 +81,15 @@ An example
 
 # Composition vs Inheritance
   Flutter widgets uses composition to create widgets, where a more complex widget is composed by other smaller widgets, instead of inheriting from one and changing it
+
+# Dart maps
+  Definition:
+    Map<KeyType, ValueType> mapName {
+      key: value
+    }
+
+  Usage:
+    get specific value: mapName[key]
+    get all keys of the map: mapName.keys
+    get all values of the map: mapName.values
+    get map length: mapName.length
