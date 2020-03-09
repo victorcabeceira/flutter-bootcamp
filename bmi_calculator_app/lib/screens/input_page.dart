@@ -147,13 +147,21 @@ class MiddleRowWidget extends StatelessWidget {
             )
           ],
         ),
-        Slider(
-          value: height.toDouble(),
-          min: kMinUserHeight,
-          max: kMaxUserHeight,
-          activeColor: kSliderActiveColor,
-          inactiveColor: kSliderInactiveColor,
-          onChanged: (double newHeight) => onChangeSlider(newHeight.round()),
+        SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            thumbColor: kSliderThumbColor,
+            activeTrackColor: kSliderActiveColor,
+            overlayColor: kSliderThumbOverlayColor,
+            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+            overlayShape: RoundSliderOverlayShape(overlayRadius: 25.0),
+          ),
+          child: Slider(
+            value: height.toDouble(),
+            min: kMinUserHeight,
+            max: kMaxUserHeight,
+            inactiveColor: kSliderInactiveColor,
+            onChanged: (double newHeight) => onChangeSlider(newHeight.round()),
+          ),
         )
       ],
     );

@@ -7,7 +7,9 @@ const double kMaxUserHeight = 250.0;
 
 // Color constants
 const Color kBottomContainerColor = Color(0xFFEB1555);
-const Color kSliderActiveColor = Color(0xFFEB1555);
+const Color kSliderActiveColor = Colors.white;
+const Color kSliderThumbColor = Color(0xFFEB1555);
+const Color kSliderThumbOverlayColor = Color(0x1fEB1555);
 const Color kSliderInactiveColor = Color(0xFF8D8E98);
 const Color kActiveCardColor = Color(0xFF1D1E33);
 const Color kInactiveCardColor = Color(0xFF111328);
