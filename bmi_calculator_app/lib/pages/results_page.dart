@@ -3,6 +3,15 @@ import 'package:bmi_calculator_app/constants/index.dart';
 import 'package:bmi_calculator_app/widgets/index.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({
+    @required this.bmiResult,
+    @required this.resultText,
+    @required this.interpretation,
+  });
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +29,13 @@ class ResultsPage extends StatelessWidget {
               child: Text('Your result', style: kTitleTextStyle),
             ),
           ),
-          MiddleCardWidget(),
+          MiddleCardWidget(
+            bmiResult: bmiResult,
+            resultText: resultText,
+            interpretation: interpretation,
+          ),
           BottomButton(
-            onTap: () => Navigator.pushNamed(context, '/'),
+            onTap: () => Navigator.pop(context),
             text: 'RE-CALCULATE',
           ),
         ],
@@ -32,6 +45,16 @@ class ResultsPage extends StatelessWidget {
 }
 
 class MiddleCardWidget extends StatelessWidget {
+  MiddleCardWidget({
+    this.bmiResult,
+    this.resultText,
+    this.interpretation,
+  });
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,10 +66,10 @@ class MiddleCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('Normal', style: kResultTextStyle),
-              Text('18.3', style: kBMITextStyle),
+              Text(resultText.toUpperCase(), style: kResultTextStyle),
+              Text(bmiResult, style: kBMITextStyle),
               Text(
-                'You should eat more.',
+                interpretation,
                 style: kBMIBodyTextStyle,
                 textAlign: TextAlign.center,
               ),
