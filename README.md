@@ -93,3 +93,15 @@ An example
     get all keys of the map: mapName.keys
     get all values of the map: mapName.values
     get map length: mapName.length
+
+# Stateful widgets lifecycle
+  - initState() {}
+    -> Called when the object is inserted into the tree
+    -> @override
+       void initState() {}
+
+  - build() {}
+    -> Called everytime the object is built (every state update)
+
+  - deactivate() {}
+    -> Called when the object is destroyed
