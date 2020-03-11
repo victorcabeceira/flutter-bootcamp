@@ -105,3 +105,14 @@ An example
 
   - deactivate() {}
     -> Called when the object is destroyed
+
+# try/catch
+  try {
+    // logic
+  } catch(e) {
+    // exception logic
+  }
+
+# null aware operator
+  If variable equals to null, used defaultValue
+  variable ?? defaultValue
