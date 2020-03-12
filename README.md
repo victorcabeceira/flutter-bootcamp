@@ -116,3 +116,6 @@ An example
 # null aware operator
   If variable equals to null, used defaultValue
   variable ?? defaultValue
+
+# static
+  Useful to create class-wide variables, so it's not necessary to create an objetct to access its properties (can't be accessed through an instance)
