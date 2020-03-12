@@ -119,3 +119,7 @@ An example
 
 # static
   Useful to create class-wide variables, so it's not necessary to create an objetct to access its properties (can't be accessed through an instance)
+
+# mixins
+  Are a way of reusing a class's code in multiple class hierarchies.
+  To use a mixin, use the $with keyword  followed by one or more mixin names.

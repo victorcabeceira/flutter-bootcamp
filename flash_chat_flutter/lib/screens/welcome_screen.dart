@@ -8,11 +8,58 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+
+    // with curves, the upperbound must be 1 at max
+    // animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
+
+    // tween animation
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
+        .animate(controller);
+
+    // controller.forward -> Go from 0 to 1
+    // controller.reverse(from: 1.0) -> Go from the specified value to 0;
+    controller.forward();
+    // controller.reverse(from: 1.0);
+
+    /* animation example that goes from 0 -> 1 and then 1 -> 0;
+      animation.addStatusListener((status) {
+        print('Status $status');
+        if (status == AnimationStatus.completed) {
+          controller.reverse(from: 1.0);
+        } else if (status == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
+    */
+
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -25,7 +72,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    height: 60,
+                    // height: 60.0,
                   ),
                 ),
                 Text(
