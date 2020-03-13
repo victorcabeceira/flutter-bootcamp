@@ -44,7 +44,6 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                //Implement logout functionality
                 _auth.signOut();
                 Navigator.pop(context);
               }),
@@ -57,6 +56,34 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+              stream: _firestore.collection('messages').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.lightBlueAccent,
+                    ),
+                  );
+                }
+
+                List<Text> messageWidgets = [];
+                final messages = snapshot.data.documents;
+                for (var message in messages) {
+                  final messageText = message.data['text'];
+                  final messageSender = message.data['sender'];
+
+                  final messageWidget =
+                      Text('$messageText from $messageSender');
+
+                  messageWidgets.add(messageWidget);
+                }
+
+                return Column(
+                  children: messageWidgets,
+                );
+              },
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
