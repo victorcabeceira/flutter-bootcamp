@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flash_chat/components/index.dart';
 import 'package:flash_chat/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/screens/index.dart';
 
 class RegistrationScreen extends StatefulWidget {
