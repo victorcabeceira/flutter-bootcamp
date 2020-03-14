@@ -123,3 +123,19 @@ An example
 # mixins
   Are a way of reusing a class's code in multiple class hierarchies.
   To use a mixin, use the $with keyword  followed by one or more mixin names.
+
+# Design patterns/Architecture/State management
+  Imperative programming: Must tell what to do
+  Reactive programming: Knows what to do
+
+  Alternatives:
+    -> BloC
+    -> Redux
+    -> Provider (InheritedWidget)
+    -> MobX
+    -> setState/Lifting state up (generally tends to prop drilling)
+
+  Provider:
+    - Package created by the community
+    - A mixture between dependency injection (DI) and state management, built with widgets for widgets.
+    - It purposefully uses widgets for DI/state management instead of dart-only classes like Stream. The reason is, widgets are very simple yet robust and scalable.
