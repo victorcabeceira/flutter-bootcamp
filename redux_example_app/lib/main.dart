@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+// import reducers
+import 'package:redux_example_app/reducers/reducers.dart';
+
 import 'package:redux_example_app/screens/counter_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  final store = Store<int>(counterReducer, initialState: 0);
 
-class MyApp extends StatelessWidget {
+  return runApp(MyReduxApp(store: store));
+}
+
+class MyReduxApp extends StatelessWidget {
+  final Store<int> store;
+  MyReduxApp({this.store});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return StoreProvider<int>(
+      store: store,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: CounterScreen(title: 'Flutter Demo Home Page'),
       ),
-      home: CounterScreen(title: 'Flutter Demo Home Page'),
     );
   }
 }
