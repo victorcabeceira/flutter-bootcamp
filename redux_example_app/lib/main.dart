@@ -6,6 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_example_app/reducers/reducers.dart';
 
 import 'package:redux_example_app/screens/counter_screen.dart';
+import 'package:redux_example_app/screens/second_screen.dart';
 
 void main() {
   final store = Store<int>(counterReducer, initialState: 0);
@@ -25,7 +26,11 @@ class MyReduxApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: CounterScreen(title: 'Flutter Demo Home Page'),
+        routes: {
+          '/': (context) => CounterScreen(),
+          '/second': (context) => SecondScreen(),
+        },
+        initialRoute: '/',
       ),
     );
   }

@@ -3,18 +3,18 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:redux_example_app/actions/actions.dart';
 
-class CounterScreen extends StatelessWidget {
+class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: Text('Page 2'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Data number 1'),
+            Text('Data number 2:'),
             StoreConnector<int, String>(
               converter: (store) => store.state.toString(),
               builder: (context, value) => Text(
@@ -52,7 +52,7 @@ class CounterScreen extends StatelessWidget {
             RaisedButton(
               color: Colors.blue,
               child: Text('Go To Screen 2'),
-              onPressed: () => Navigator.pushNamed(context, '/second'),
+              onPressed: () => Navigator.pop(context),
             ),
           ],
         ),
