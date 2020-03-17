@@ -7,13 +7,18 @@ class CounterData extends ChangeNotifier {
     return _counter;
   }
 
-  void incrementCounter() {
-    _counter++;
+  String get counterAsString {
+    return _counter.toString();
+  }
+
+  void decrementCounter(int number) {
+    print('#decrementCounter, argument number: $number');
+    _counter--;
     notifyListeners();
   }
 
-  void decrementCounter() {
-    _counter--;
+  void incrementCounter() {
+    _counter++;
     notifyListeners();
   }
 }

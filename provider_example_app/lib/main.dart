@@ -31,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,34 +44,35 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'You have pushed the button this many times:',
               ),
-              Text(
-                Provider.of<CounterData>(context).counter.toString(),
-                style: Theme.of(context).textTheme.display1,
-              ),
+              Consumer<CounterData>(
+                builder: (context, counterData, _) => Text(
+                  counterData.counterAsString,
+                  // Provider.of<CounterData>(context).counter.toString(),
+                  style: Theme.of(context).textTheme.display1,
+                ),
+              )
             ],
           ),
         ),
-        floatingActionButton: Consumer<CounterData>(
-          builder: (context, counterData, _) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                FloatingActionButton(
-                  onPressed: () => counterData.decrementCounter(),
-                  tooltip: 'Decrement',
-                  child: Icon(Icons.remove),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                FloatingActionButton(
-                  onPressed: () => counterData.incrementCounter(),
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add),
-                ),
-              ],
-            );
-          },
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: () => Provider.of<CounterData>(context, listen: false)
+                  .decrementCounter(1),
+              tooltip: 'Decrement',
+              child: Icon(Icons.remove),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            FloatingActionButton(
+              onPressed: Provider.of<CounterData>(context, listen: false)
+                  .incrementCounter,
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
+          ],
         ));
   }
 }
