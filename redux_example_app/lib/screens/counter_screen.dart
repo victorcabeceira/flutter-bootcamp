@@ -18,7 +18,7 @@ class CounterScreen extends StatelessWidget {
             StoreConnector<int, String>(
               converter: (store) => store.state.toString(),
               builder: (context, value) => Text(
-                '$value',
+                value,
                 style: Theme.of(context).textTheme.display1,
               ),
             ),

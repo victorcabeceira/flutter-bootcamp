@@ -35,6 +35,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Redux complex case'),
       ),
+      /* Proliferate the store to the widget tree */
       body: StoreConnector<AppState, _ViewModel>(
         /*
           A function that takes the store and converts it into the viewModel that we want to pass
@@ -59,7 +60,7 @@ class MyHomePage extends StatelessWidget {
 
 /*
   Middle piece that connect user interface to the store
-  We can define what we want to expose from our store and UI to other parts of the app
+  We can define what we want to expose from our store and UI to the other parts of the app
   mapStateToProps/mapDispatchToProps
 */
 class _ViewModel {

@@ -4,6 +4,7 @@ class AddItemAction {
   static int _id = 0;
   final String item;
 
+  // Creates a new item with the item passed and iterate the id
   AddItemAction(this.item) {
     _id++;
   }

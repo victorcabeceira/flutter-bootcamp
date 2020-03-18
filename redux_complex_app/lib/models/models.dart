@@ -1,8 +1,12 @@
 import 'package:flutter/foundation.dart';
 
+/*
+  A model of the Items that are going to be added and removed from the application
+ */
 class Item {
   final int id;
   final String body;
+
   Item({
     @required this.id,
     @required this.body,
@@ -17,10 +21,12 @@ class Item {
   }
 }
 
+/* Represents the entire app state */
 class AppState {
   final List<Item> items;
 
   AppState({@required this.items});
 
+  /* Named constructor that make a new empty state, that is immutable */
   AppState.initialState() : items = List.unmodifiable(<Item>[]);
 }
